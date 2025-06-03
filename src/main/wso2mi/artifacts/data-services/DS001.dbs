@@ -1,0 +1,381 @@
+<data name="srvSeguridad" serviceNamespace="" serviceGroup="" transports="http https" disableStreaming="true">
+    <description>srvSeguridad 1.0</description>
+    <!-- Referencia al datasource externo -->
+    <config id="MyDataSourceABC" provider="wso2">
+        <property name="carbon_datasource_name">MyDataSource1234</property>
+    </config>
+
+    <query id="get_buscarUsuarioPG1" useConfig="MyDataSourceABC">
+        <sql>CALL BUSQUEDA(?)</sql>
+        <param name="refcursor_name" sqlType="ORACLE_REF_CURSOR" type="INOUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="get_buscarUsuarioPG2" useConfig="MyDataSourceABC">
+        <sql>SELECT * FROM BUSQUEDA2()</sql>
+        
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="get_buscarUsuario" useConfig="MyDataSourceABC">
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.BUSQUEDA(?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+            <element column="CSEG_CIUDAD" name="ciudad" xsdType="string"/>
+            <element column="CSEG_CIUDAD_DESC" name="ciudad_descripcion" xsdType="string"/>
+            <element column="CSEG_TOTAL" name="total_count" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="get_buscarUsuario1_query" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.BUSQUEDA1(?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="get_buscarUsuario2_query" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="nombre" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.BUSQUEDA2(?, ?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="ins_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="nombres" paramType="" sqlType="STRING" type="IN"/>
+        <param name="apellidos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="email" paramType="" sqlType="STRING" type="IN"/>
+        <param name="fecha" paramType="" sqlType="STRING" type="IN"/>
+        <param name="sexo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="lugar" paramType="" sqlType="STRING" type="IN" />
+        <param name="edad" paramType="" sqlType="STRING" type="IN" />
+        <param name="rol" paramType="" sqlType="STRING" type="IN"/>
+        <param name="comentario" paramType="" sqlType="STRING" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.INS_DEPT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</sql>
+        
+    </query>
+    
+    <query id="upd_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="nombres" paramType="" sqlType="STRING" type="IN"/>
+        <param name="apellidos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="email" paramType="" sqlType="STRING" type="IN"/>
+        <param name="fecha" paramType="" sqlType="STRING" type="IN"/>
+        <param name="sexo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="lugar" paramType="" sqlType="STRING" type="IN" />
+        <param name="edad" paramType="" sqlType="STRING" type="IN" />
+        <param name="rol" paramType="" sqlType="STRING" type="IN"/>
+        <param name="comentario" paramType="" sqlType="STRING" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.UPD_DEPT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</sql>
+    </query>
+
+    <query id="filter_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="nombres" paramType="" sqlType="STRING" type="IN"/>
+        <param name="apellidos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="fecha" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.FILTER_DEPT(?, ?, ?, ?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+            <element column="CSEG_CIUDAD" name="ciudad" xsdType="string"/>
+            <element column="CSEG_CIUDAD_DESC" name="ciudad_descripcion" xsdType="string"/>
+            <element column="CSEG_TOTAL" name="total_count" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="page_filter_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="pagina" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="paginaTamanio" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="ordenCampo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="ordenDireccion" paramType="" sqlType="STRING" type="IN"/>
+        <param name="filtros" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.PAGE_FILTER_DEPT(?, ?, ?, ?, ?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+            <element column="CSEG_CIUDAD" name="ciudad" xsdType="string"/>
+            <element column="CSEG_CIUDAD_DESC" name="ciudad_descripcion" xsdType="string"/>
+            <element column="CSEG_TOTAL" name="total_count" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="save_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="metodo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="ciudad" paramType="" sqlType="STRING" type="IN"/>
+        <param name="nombres" paramType="" sqlType="STRING" type="IN"/>
+        <param name="apellidos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="email" paramType="" sqlType="STRING" type="IN"/>
+        <param name="fecha" paramType="" sqlType="STRING" type="IN"/>
+        <param name="hora" paramType="" sqlType="STRING" type="IN"/>
+        <param name="sexo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="lugar" paramType="" sqlType="STRING" type="IN" />
+        <param name="edad" paramType="" sqlType="STRING" type="IN" />
+        <param name="rol" paramType="" sqlType="STRING" type="IN"/>
+        <param name="comentario" paramType="" sqlType="STRING" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.SAVE_DEPT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+            <element column="CSEG_CIUDAD" name="ciudad" xsdType="string"/>
+            <element column="CSEG_CIUDAD_DESC" name="ciudad_descripcion" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="save2_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="metodo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="ciudad" paramType="" sqlType="STRING" type="IN"/>
+        <param name="nombres" paramType="" sqlType="STRING" type="IN"/>
+        <param name="apellidos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="email" paramType="" sqlType="STRING" type="IN"/>
+        <param name="fecha" paramType="" sqlType="STRING" type="IN"/>
+        <param name="hora" paramType="" sqlType="STRING" type="IN"/>
+        <param name="sexo" paramType="" sqlType="STRING" type="IN"/>
+        <param name="lugar" paramType="" sqlType="STRING" type="IN" />
+        <param name="edad" paramType="" sqlType="STRING" type="IN" />
+        <param name="rol" paramType="" sqlType="STRING" type="IN"/>
+        <param name="comentario" paramType="" sqlType="STRING" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.SAVE_DEPT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</sql>
+        <param name="resultset" sqlType="ORACLE_REF_CURSOR" type="OUT"/>
+        <result element="Usuarios" rowName="Usuario">
+            <element column="CSEG_ID" name="id" xsdType="string"/>
+            <element column="CSEG_CODIGO" name="codigo" xsdType="string"/>
+            <element column="CSEG_NOMBRE" name="nombres" xsdType="string"/>
+            <element column="CSEG_APELLIDOS" name="apellidos" xsdType="string"/>
+            <element column="CSEG_EMAIL" name="email" xsdType="string"/>
+            <element column="CSEG_FECHA" name="fecha" xsdType="string"/>
+            <element column="CSEG_SEXO" name="sexo" xsdType="string"/>
+            <element column="CSEG_LUGAR" name="lugar" xsdType="string"/>
+            <element column="CSEG_EDAD" name="edad" xsdType="string"/>
+            <element column="CSEG_ROL" name="rol" xsdType="string"/>
+            <element column="CSEG_COMENTARIO" name="comentario" xsdType="string"/>
+            <element column="CSEG_CIUDAD" name="ciudad" xsdType="string"/>
+            <element column="CSEG_CIUDAD_DESC" name="ciudad_descripcion" xsdType="string"/>
+        </result>
+    </query>
+
+    <query id="del_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="codigo" paramType="" sqlType="INTEGER" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.DEL_DEPT(?, ?)</sql>
+    </query>
+
+    <query id="approval_Usuario_script" useConfig="MyDataSourceABC">
+        <param name="codigos" paramType="" sqlType="STRING" type="IN"/>
+        <param name="accion" paramType="" sqlType="STRING" type="IN"/>
+        <param name="usuarioAudit" paramType="" sqlType="STRING" type="IN"/>
+        <sql>CALL WSEGUR.REF_CURSOR_PACKAGE2.APPROVAL_DEPT(?, ?, ?)</sql>
+    </query>
+
+    <resource method="GET" path="/buscarUsuarioPG1" disableStreaming="true">
+        <call-query href="get_buscarUsuarioPG1">
+        </call-query>
+    </resource>
+
+    <resource method="GET" path="/buscarUsuarioPG2" disableStreaming="true">
+        <call-query href="get_buscarUsuarioPG2">
+        </call-query>
+    </resource>
+
+    <resource method="GET" path="/buscarUsuario" disableStreaming="true">
+        <call-query href="get_buscarUsuario">
+        </call-query>
+    </resource>
+
+    <resource method="GET" path="/buscarUsuario1/{codigo}" disableStreaming="true">
+        <call-query href="get_buscarUsuario1_query">
+            <with-param name="codigo" query-param="codigo"/>
+        </call-query>
+    </resource>
+
+    <resource method="GET" path="/buscarUsuario2/{codigo}/{nombre}" disableStreaming="true">
+        <call-query href="get_buscarUsuario2_query">
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="nombre" query-param="nombre"/>
+        </call-query>
+    </resource>
+
+    <resource method="POST" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="ins_Usuario_script">
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="nombres" query-param="nombres"/>
+            <with-param name="apellidos" query-param="apellidos"/>
+            <with-param name="email" query-param="email"/>
+            <with-param name="fecha" query-param="fecha"/>
+            <with-param name="sexo" query-param="sexo"/>
+            <with-param name="lugar" query-param="lugar"/>
+            <with-param name="edad" query-param="edad"/>
+            <with-param name="rol" query-param="rol"/>
+            <with-param name="comentario" query-param="comentario"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+    <resource method="PUT" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="upd_Usuario_script">
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="nombres" query-param="nombres"/>
+            <with-param name="apellidos" query-param="apellidos"/>
+            <with-param name="email" query-param="email"/>
+            <with-param name="fecha" query-param="fecha"/>
+            <with-param name="sexo" query-param="sexo"/>
+            <with-param name="lugar" query-param="lugar"/>
+            <with-param name="edad" query-param="edad"/>
+            <with-param name="rol" query-param="rol"/>
+            <with-param name="comentario" query-param="comentario"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+    <resource method="POST" path="/UsuarioFiltro" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="filter_Usuario_script">
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="nombres" query-param="nombres"/>
+            <with-param name="apellidos" query-param="apellidos"/>
+            <with-param name="fecha" query-param="fecha"/>
+        </call-query>
+    </resource>
+
+    <resource method="POST" path="/UsuarioPaginaFiltro" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="page_filter_Usuario_script">
+            <with-param name="pagina" query-param="pagina"/>
+            <with-param name="paginaTamanio" query-param="paginaTamanio"/>
+            <with-param name="ordenCampo" query-param="ordenCampo"/>
+            <with-param name="ordenDireccion" query-param="ordenDireccion"/>
+            <with-param name="filtros" query-param="filtros"/>
+        </call-query>
+    </resource>
+
+    <resource method="POST" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="save_Usuario_script">
+            <with-param name="metodo" query-param="metodo"/>
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="ciudad" query-param="ciudad"/>
+            <with-param name="nombres" query-param="nombres"/>
+            <with-param name="apellidos" query-param="apellidos"/>
+            <with-param name="email" query-param="email"/>
+            <with-param name="fecha" query-param="fecha"/>
+            <with-param name="hora" query-param="hora"/>
+            <with-param name="sexo" query-param="sexo"/>
+            <with-param name="lugar" query-param="lugar"/>
+            <with-param name="edad" query-param="edad"/>
+            <with-param name="rol" query-param="rol"/>
+            <with-param name="comentario" query-param="comentario"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+    <resource method="PUT" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="save2_Usuario_script">
+            <with-param name="metodo" query-param="metodo"/>
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="ciudad" query-param="ciudad"/>
+            <with-param name="nombres" query-param="nombres"/>
+            <with-param name="apellidos" query-param="apellidos"/>
+            <with-param name="email" query-param="email"/>
+            <with-param name="fecha" query-param="fecha"/>
+            <with-param name="hora" query-param="hora"/>
+            <with-param name="sexo" query-param="sexo"/>
+            <with-param name="lugar" query-param="lugar"/>
+            <with-param name="edad" query-param="edad"/>
+            <with-param name="rol" query-param="rol"/>
+            <with-param name="comentario" query-param="comentario"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+    <resource method="DELETE" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="del_Usuario_script">
+            <with-param name="codigo" query-param="codigo"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+    <resource method="PATCH" path="/Usuario" disableStreaming="true" inputType="application/json" outputType="json">
+        <call-query href="approval_Usuario_script">
+            <with-param name="codigos" query-param="codigos"/>
+            <with-param name="accion" query-param="accion"/>
+            <with-param name="usuarioAudit" query-param="usuarioAudit"/>
+        </call-query>
+    </resource>
+
+</data>
